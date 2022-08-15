@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Test 3 - Anchor a Query using Comunica and Linkchain</title>
+
+	<link href="./app.css" rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript" src="./lib/linkchains-bundle.js"></script>
+	<script type="application/javascript" src="https://rdf.js.org/comunica-browser/versions/v2/engines/query-sparql/comunica-browser.js"></script>
+	<script type="application/javascript" src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+	<script type="text/javascript" src="./contract.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+</head>
+
+<body onload="initApp();">
+
+	<div class="title_head">
+		<span class="headlogo"><a href="https://kmi.open.ac.uk/" title="Knowledge Media Institute at Open University"><img alt="Knowledge Media Institute at Open University" src="./images/kmi-logo.png" /></a></span>
+		<span class="headlogoright"><a href="https://open.ac.uk/" title="Open University"><img alt="Open University" src="./images/ou-logo.png" /></a></span>
+	</div>
+
+	<div class="holder">
+		<h2>Anchor a Query using Comunica and Linkchain</h2>
+
+		<div class="innerholder" style="padding-top:10px;">
+
+			<div class="panel" style="clear:both; float: left;margin-top:20px;">
+				<span>
+					<h3>Connect to MetaMask (Select a testnet)</h3>
+					<br />
+					<button class="buttonmetamask" name="enableEthereumButton" id="enableEthereumButton" disabled="false" onclick="loginToMetaMask()">Connect to MetaMask</button>
+					<label for="ethereumaccount">Ethereum Account: </label>
+					<label id="ethereumaccount"></label>
+					</br />
+				</span>
+			</div>
+
+			<div class="panel" style="clear:both; float: left;margin-top:20px;">
+				<span>
+					<h3>Anchor a Query</h3>
+
+					<label for="sources">Sources (comma separated list of strings):</label><br />
+					<input type="text" id="sources" name="sources" size="100" title="URLs to use for the sources to run the query on">
+					<br /><br />
+
+					<label for="query">Query:</label>
+					<textarea name="query" id="query" class="textareastyle" title="The query to run on the source"></textarea>
+
+					<button class="button" name="runButton" id="runButton" onclick="runQuery()">Run Query</button>
+
+					<br /><hr /><br />
+
+ 					<label for="result">Query Result:</label>
+					<br />
+					<textarea name="queryResults" id="queryResults" class="textareastyle"></textarea>
+					<br /><br />
+
+ 					<label for="physcialResults">Physical Query Plan:</label>
+					<br />
+					<textarea name="physcialResults" id="physcialResults" class="textareastyle"></textarea>
+					<br /><br />
+
+ 					<label for="logicalResults">Logical Query Plan:</label>
+					<br />
+					<textarea name="logicalResults" id="logicalResults" class="textareastyle"></textarea>
+					<br /><br />
+
+ 					<label for="parsedResults">Parsed Query Plan:</label>
+					<br />
+					<textarea name="parsedResults" id="parsedResults" class="textareastyle"></textarea>
+					<br /><br />
+
+					<button class="buttonmetamask" name="anchorButton" id="anchorButton" onclick="anchorPlan()">Anchor</button>
+
+					<br /><hr /><br />
+
+ 					<label for="anchoredData">RDF to Anchor:</label>
+					<br />
+					<textarea name="anchoredData" id="anchoredData" class="textareastyle"></textarea>
+					<br /><br />
+
+ 					<label for="metadataResults">MerQL Metadata:</label>
+					<br />
+					<textarea name="metadataResults" id="metadataResults" class="textareastyle"></textarea>
+					<br /><br />
+
+ 					<label for="anchoredResults">Anchored MerQL Metadata:</label>
+					<br />
+					<textarea name="anchoredResults" id="anchoredResults" class="textareastyle"></textarea>
+					<br /><br />
+
+ 					<label for="granularAnchoredResults">Granular Anchored MerQL Metadata:</label>
+					<br />
+					<textarea name="granularAnchoredResults" id="granularAnchoredResults" class="textareastyle"></textarea>
+					<br /><br />
+
+					<button id="storeDataButton" class="button" onclick="storeData()">Store Data</button>
+
+				</span>
+			</div>
+			<div class="panel" style="clear:both; float: left;margin-top:20px;">
+				<span>
+					<h3>Stored Data &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button" id="clearDataButton" name="clearDataButton" onclick="clearDataStore()">Clear Stored Data</button></h3>
+
+					<table style="width: 100%">
+						<thead style="background-color: lightgray">
+							<tr>
+								<th width="10">Date</th>
+								<th width="15">Sources</th>
+								<th width="15">Query</th>
+								<th width="15">Query Result</th>
+								<th width="15">Anchored Data</th>
+								<th width="15">Anchored Metadata</th>
+								<th width="15">Granular Anchored Metadata</th>
+							</tr>
+						</thead>
+						<tbody id="storedDataTable" style="background-color: white;"></tbody>
+					</table>
+				</span>
+			</div>
+
+			<br /><br />
+		</div>
+	</div>
+
+	<div class="popup" id="popupDiv">
+		<textarea class="popuptext" id="popupText"></textarea>
+		<button class="button popupbutton" onclick="closePopup()">Close</button>
+		<button class="button popupbutton" onclick="copyToClipboard()">Copy</button>
+	</div>
+
+	<div class="clearit"></div>
+	<br>
+	<div class="bottomband"><a href="http://kmi.open.ac.uk">Copyright The Knowledge Media Institute</a></div>
+</body>
+
+</html>

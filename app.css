@@ -1,0 +1,225 @@
+
+/** Styling on all instances of a given element **/
+
+body {
+	font-family: Arial, sans-serif;
+    	background-repeat:no-repeat;
+	border: 0;
+	height: 100%;
+	margin: 0 0 40px; /* bottom = footer height */
+}
+
+input {
+	padding:3px;
+	font-size: 12pt;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+}
+
+select {
+	padding: 4px 16px;
+	cursor: pointer;
+	font-size: 12pt;
+}
+
+/** Styling by named class **/
+
+.container {
+	position: relative;
+	min-height: calc(100vh - 135px); /* 135 (85 + 50) height of head (or footer?) and margin-bottom of head...? */
+	width: 1170px;
+ 	padding-right: 15px;
+ 	padding-left: 15px;
+ 	margin-right: auto;
+ 	margin-left: auto
+}
+
+.holder {
+	position: relative;
+	width: 90%;
+	min-height: calc(100vh - 135px); /* 135 (85 + 50) height of head (or footer?) and margin-bottom of head...? */
+ 	padding-right: 15px;
+ 	padding-left: 15px;
+ 	margin-right: auto;
+ 	margin-left: auto;
+ 	margin-bottom: 45px;
+}
+
+.innerholder {
+	float:left;
+	width: 100%;
+	padding-top:20px;
+ 	padding-bottom: 105px;	
+}
+
+.panel {
+	background: #dee6f2; /* For browsers that do not support gradients */
+	background: linear-gradient(#dee6f2,#c9d9f0); /* Standard syntax */
+	float:left;
+	width: 100%;
+	padding:10px;
+	box-sizing: border-box;
+}
+
+.clearit {
+	clear: both;
+}
+
+/** form elements **/
+
+.textareastyle {
+ 	width: 99.5%;
+ 	height: 140px;
+}
+
+.textareastylebig {
+ 	width: 99.5%;
+ 	height: 280px;
+}
+
+.button {
+	padding: 4px 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 12pt;
+}
+
+.button:hover {
+	filter: brightness(90%);
+}
+
+.buttonmetamask {
+	padding: 4px 16px;
+	border-radius: 4px;
+	background-color: #eda551;
+	cursor: pointer;
+	font-size: 12pt;
+}
+
+.buttonmetamask:hover {
+	background-color: #f2890f;
+	font-size: 12pt;
+}
+
+.labelmid {
+	float:left;
+	width: 180px;
+}
+
+/** Page header area **/
+.title_head {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 85px;
+	font: 1.25em helvetica, sans-serif;
+	color: #0b2637;
+	/*word-spacing: 20px;*/
+	padding: 12px 30px 20px 25px; /* top right bottom left */
+	background-color: white;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+	margin-bottom: 30px;
+}
+
+.title_head a {
+	color: black;
+	text-decoration: none;
+}
+
+.title_head a:hover {
+	color: #4286f4;
+	text-decoration: underline;
+}
+
+.headlogo {
+	float: left;
+	margin-top: 0px;
+}
+
+.headlogoright {
+	float: right;
+	margin-right: 40px;
+	margin-top: -5px;
+}
+
+/** Page footer area **/
+.bottomband {
+	z-index:999;
+	position: fixed;
+    	left: 0;
+    	top: auto;
+    	bottom: 0;
+	background: #1d5d82;
+	background-repeat: no-repeat;
+	font: 0.6em arial, sans-serif;
+	text-align: right;
+	color: #fff;
+	width: 100%;
+	height: 40px;
+	padding: 10px; /* top right bottom left */
+	box-sizing: border-box;
+}
+.bottomband a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 14pt;
+}
+.bottomband a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+/*** adapted from: https://www.w3schools.com/howto/howto_js_popup.asp ***/
+
+/* Popup container */
+.popup {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup {
+	visibility: hidden;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+    	-webkit-transform: translate(-50%, -50%);
+    	transform: translate(-50%, -50%); 
+	width: 910px;
+	height: 750px;
+	z-index: 1;
+	padding:10px;
+	background-color: white;
+	border: 2px solid gray;
+	background: #1b6e9e; /** dark blue #1d5d82; */
+}
+
+.popup .show {
+	visibility: visible;
+}
+
+.popuptext {
+	position: relative;
+	padding:5px;
+	width: 900px;
+	height: 700px;
+	background-color: white;
+	overflow-y: scroll;
+	overflow-x: scroll;
+	border: 1px solid gray;
+}
+
+.popupbutton {
+	float:right;
+	margin-top:10px;
+	margin-left:10px;
+}
