@@ -509,7 +509,7 @@ function loadStoredData() {
 		resultColumn.appendChild(resultButton);
 
 		let anchoredDataButton = document.createElement("button");
-		anchoredDataButton.innerHTML = "View Anchored RDF";
+		anchoredDataButton.innerHTML = "View Trace Data";
 		anchoredDataButton.className = "button";
 		anchoredDataButton.data = next.anchoredData;
 		anchoredDataButton.onclick = function () {

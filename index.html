@@ -32,7 +32,9 @@
 
 			<div class="panel" style="clear:both; float: left;margin-top:20px;">
 				<span>
-					<h3>Connect to MetaMask (Select a testnet)</h3>
+					<h3>Connect to <a href="https://metamask.io/">MetaMask</a> (Select a testnet)</h3>
+					<br />
+					(Requires a configured Metamask wallet - see <a href="https://github.com/KMiOpenBlockchain/isws2022-demonstrator/blob/main/README.md#metamask-and-the-rinkby-ethereum-testnet">here</a>)
 					<br />
 					<button class="buttonmetamask" name="enableEthereumButton" id="enableEthereumButton" disabled="false" onclick="loginToMetaMask()">Connect to MetaMask</button>
 					<label for="ethereumaccount">Ethereum Account: </label>
@@ -45,33 +47,33 @@
 				<span>
 					<h3>Anchor a Query</h3>
 
-					<label for="sources">Sources (comma separated list of strings):</label><br />
+					<label for="sources">Sources (comma separated list of strings, Comunica format):</label><br />
 					<input type="text" id="sources" name="sources" size="100" title="URLs to use for the sources to run the query on">
 					<br /><br />
 
-					<label for="query">Query:</label>
+					<label for="query">SPARQL Query:</label>
 					<textarea name="query" id="query" class="textareastyle" title="The query to run on the source"></textarea>
 
 					<button class="button" name="runButton" id="runButton" onclick="runQuery()">Run Query</button>
 
 					<br /><hr /><br />
 
- 					<label for="result">Query Result:</label>
+ 					<label for="result">Query Result (SPARQL JSON):</label>
 					<br />
 					<textarea name="queryResults" id="queryResults" class="textareastyle"></textarea>
 					<br /><br />
 
- 					<label for="physcialResults">Physical Query Plan:</label>
+ 					<label for="physcialResults">Physical Query Plan (from Comunica):</label>
 					<br />
 					<textarea name="physcialResults" id="physcialResults" class="textareastyle"></textarea>
 					<br /><br />
 
- 					<label for="logicalResults">Logical Query Plan:</label>
+ 					<label for="logicalResults">Logical Query Plan (from Comunica):</label>
 					<br />
 					<textarea name="logicalResults" id="logicalResults" class="textareastyle"></textarea>
 					<br /><br />
 
- 					<label for="parsedResults">Parsed Query Plan:</label>
+ 					<label for="parsedResults">Parsed Query Plan (from Comunica):</label>
 					<br />
 					<textarea name="parsedResults" id="parsedResults" class="textareastyle"></textarea>
 					<br /><br />
@@ -80,34 +82,44 @@
 
 					<br /><hr /><br />
 
- 					<label for="anchoredData">RDF to Anchor:</label>
+ 					<label for="anchoredData">SPARQL Trace Data:</label>
+					<br />
+					(JSON-LD object containing query, sources, results and query plans)
 					<br />
 					<textarea name="anchoredData" id="anchoredData" class="textareastyle"></textarea>
 					<br /><br />
 
+					<div hidden>
  					<label for="metadataResults">MerQL Metadata:</label>
 					<br />
 					<textarea name="metadataResults" id="metadataResults" class="textareastyle"></textarea>
 					<br /><br />
+					</div>
 
+					<div>
  					<label for="anchoredResults">Anchored MerQL Metadata:</label>
+					<br />
+					(Metadata for whole-document blockchain verification)
 					<br />
 					<textarea name="anchoredResults" id="anchoredResults" class="textareastyle"></textarea>
 					<br /><br />
+					</div>
 
  					<label for="granularAnchoredResults">Granular Anchored MerQL Metadata:</label>
+					<br />
+					(Metadata for per-quad/triple blockchain verification)
 					<br />
 					<textarea name="granularAnchoredResults" id="granularAnchoredResults" class="textareastyle"></textarea>
 					<br /><br />
 
-					<button id="storeDataButton" class="button" onclick="storeData()">Store Data</button>
+					<button id="storeDataButton" class="button" onclick="storeData()">Store Data</button>(in local storage)
 
 				</span>
 			</div>
 			<div class="panel" style="clear:both; float: left;margin-top:20px;">
 				<span>
 					<h3>Stored Data &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button" id="clearDataButton" name="clearDataButton" onclick="clearDataStore()">Clear Stored Data</button></h3>
-
+					<br />
 					<table style="width: 100%">
 						<thead style="background-color: lightgray">
 							<tr>
@@ -115,7 +127,7 @@
 								<th width="15">Sources</th>
 								<th width="15">Query</th>
 								<th width="15">Query Result</th>
-								<th width="15">Anchored Data</th>
+								<th width="15">SPARQL Trace Data</th>
 								<th width="15">Anchored Metadata</th>
 								<th width="15">Granular Anchored Metadata</th>
 							</tr>
