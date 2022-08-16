@@ -223,3 +223,15 @@ select {
 	margin-top:10px;
 	margin-left:10px;
 }
+
+.info {
+	font-family: Arial, sans-serif;
+	color: #606060;
+	font-size: 11pt;
+}
+
+.infobig {
+	font-family: Arial, sans-serif;
+	color: #606060;
+	font-size: 12pt;
+}

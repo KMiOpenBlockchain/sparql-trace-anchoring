@@ -34,7 +34,7 @@
 				<span>
 					<h3>Connect to <a href="https://metamask.io/">MetaMask</a> (Select a testnet)</h3>
 
-					(Requires a configured Metamask wallet - see <a href="https://github.com/KMiOpenBlockchain/isws2022-demonstrator/blob/main/README.md#metamask-and-the-rinkby-ethereum-testnet">here</a>)
+					<span class="infobig">Note: Requires a configured Metamask wallet - see </span><a href="https://github.com/KMiOpenBlockchain/isws2022-demonstrator/blob/main/README.md#metamask-and-the-rinkby-ethereum-testnet">here</a>
 					<br /><br />
 					<button class="buttonmetamask" name="enableEthereumButton" id="enableEthereumButton" disabled="false" onclick="loginToMetaMask()">Connect to MetaMask</button>
 					<label for="ethereumaccount">Ethereum Account: </label>
@@ -47,7 +47,7 @@
 				<span>
 					<h3>Anchor a Query</h3>
 
-					<label for="sources">Sources (comma separated list of strings, Comunica format):</label><br />
+					<label for="sources">Sources <span class="info">(comma separated list of strings, Comunica format)</span>:</label><br />
 					<input type="text" id="sources" name="sources" size="100" title="URLs to use for the sources to run the query on">
 					<br /><br />
 
@@ -58,12 +58,12 @@
 
 					<br /><hr /><br />
 
- 					<label for="result">Query Result (SPARQL JSON):</label>
+ 					<label for="result">Query Result <span class="info">(SPARQL JSON)</span>:</label>
 					<br />
 					<textarea name="queryResults" id="queryResults" class="textareastyle"></textarea>
 					<br /><br />
 
- 					<label for="physcialResults">Physical Query Plan (from Comunica):</label>
+ 					<label for="physcialResults">Physical Query Plan <span class="info">(from Comunica)</span>:</label>
 					<br />
 					<textarea name="physcialResults" id="physcialResults" class="textareastyle"></textarea>
 					<br /><br />
@@ -74,7 +74,7 @@
 
  					<label for="anchoredData">SPARQL Trace Data:</label>
 					<br />
-					(JSON-LD object containing query, sources, results and query plans)
+					<span class="info">(JSON-LD object containing query, sources, results and query plans)</span>
 					<br />
 					<textarea name="anchoredData" id="anchoredData" class="textareastyle"></textarea>
 					<br /><br />
@@ -89,7 +89,7 @@
 					<div>
  					<label for="anchoredResults">Anchored MerQL Metadata:</label>
 					<br />
-					(Metadata for whole-document blockchain verification)
+					<span class="info">(Metadata for whole-document blockchain verification)</span>
 					<br />
 					<textarea name="anchoredResults" id="anchoredResults" class="textareastyle"></textarea>
 					<br /><br />
@@ -97,12 +97,12 @@
 
  					<label for="granularAnchoredResults">Granular Anchored MerQL Metadata:</label>
 					<br />
-					(Metadata for per-quad/triple blockchain verification)
+					<span class="info">(Metadata for per-quad/triple blockchain verification)</span>
 					<br />
 					<textarea name="granularAnchoredResults" id="granularAnchoredResults" class="textareastyle"></textarea>
 					<br /><br />
 
-					<button id="storeDataButton" class="button" onclick="storeData()">Store Data</button>(in local storage)
+					<button id="storeDataButton" class="button" onclick="storeData()">Store Data</button>  <span class="info">(in local storage)</span>
 
 				</span>
 			</div>
