@@ -44,9 +44,7 @@ let template = {
 	"query": "",
 	"results": "",
 	"explanations": {
-		"physical": "",
-		"logical": "",
-		"parsed": ""
+		"physical": ""
 	}
 }
 
@@ -232,8 +230,6 @@ async function runQuery() {
 
 	const queryResults = document.getElementById("queryResults");
 	const physcialResults = document.getElementById("physcialResults");
-	const logicalResults = document.getElementById("logicalResults");
-	const parsedResults = document.getElementById("parsedResults");
 
 	try {
 		// https://fragments.dbpedia.org/2015/en
@@ -281,13 +277,6 @@ async function runQuery() {
 		physcialResults.value = JSON.stringify(physicalPlan, null, 2);
 		//console.log(physicalPlan);
 
-		const logicalPlan = await engine.explain(query, { sources: sourcesArray, }, 'logical');
-		logicalResults.value = JSON.stringify(logicalPlan, null, 2);
-		//console.log(logicalPlan);
-
-		const parsedPlan = await engine.explain(query, { sources: sourcesArray, }, 'parsed');
-		parsedResults.value = JSON.stringify(parsedPlan, null, 2);
-		//console.log(parsedPlan);
 		queryResults.value = resultString; //JSON.stringify(resultString, null, 2);
 
 	} catch (e) {
@@ -328,20 +317,6 @@ async function anchorPlan() {
 		return;
 	}
 
-	let logicalResults = document.getElementById("logicalResults").value;
-	logicalResults = logicalResults.trim();
-	if (logicalResults == "") {
-		alert("Please run a query first");
-		return;
-	}
-
-	let parsedResults = document.getElementById("parsedResults").value;
-	parsedResults = parsedResults.trim();
-	if (parsedResults == "") {
-		alert("Please run a query first");
-		return;
-	}
-
 	// copy the template
 	const newTemplate = JSON.parse(JSON.stringify(template));
 
@@ -353,8 +328,6 @@ async function anchorPlan() {
 	newTemplate.query = escapedQuery;
 	newTemplate.results = JSON.parse(queryResults);
 	newTemplate.explanations.physical = JSON.parse(physcialResults);
-	newTemplate.explanations.logical = JSON.parse(logicalResults);
-	newTemplate.explanations.parsed = JSON.parse(parsedResults);
 
 	console.log(newTemplate);
 
@@ -639,8 +612,6 @@ function storeData() {
 	document.getElementById("query").value = "";
 	document.getElementById("queryResults").value = "";
 	document.getElementById("physcialResults").value = "";
-	document.getElementById("logicalResults").value = "";
-	document.getElementById("parsedResults").value = "";
 	document.getElementById("anchoredData").value = "";
 	document.getElementById("metadataResults").value = "";
 	document.getElementById("anchoredResults").value = "";
