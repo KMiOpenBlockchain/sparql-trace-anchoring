@@ -37,8 +37,8 @@ let template = {
 		"@vocab": "https://blockchain.kmi.open.ac.uk/vocab/"
 	},
 	"processor": {
-		"version": "2.0.1",
-		"url": "https://rdf.js.org/comunica-browser/versions/v2/engines/query-sparql/comunica-browser.js",
+		"version": "2.2.1",
+		"url": "https://rdf.js.org/comunica-browser/versions/v2.2.1/engines/query-sparql/comunica-browser.js",
 	},
 	"sources": "",
 	"query": "",
