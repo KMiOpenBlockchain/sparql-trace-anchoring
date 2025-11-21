@@ -1,0 +1,176 @@
+.padbottom {
+	padding-bottom: 90px; /* set to allow for footer height */
+}
+
+.cookieConsentButton {
+    background-color: #fbbf11; /* Green background */
+    border: 1px solid #bbb;
+    color: black; /* White text */
+    padding: 5px 10px; /* Some padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the buttons appear side by side */
+    font-size: 16px; /* Increase font size */
+    margin: 4px 2px; /* Some margin */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 12px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.cookieConsentButton:hover {
+    background-color: white; 
+}
+
+.cookieConsentButton:focus {
+    background-color: white; 
+}
+
+/** Page header area **/
+
+
+.headlogoright {
+	float: right;
+}
+
+.jkmilogo {
+	float: right;
+	border: none;
+	margin-top: 0px;
+	height: 30px;
+}
+.oulogo {
+	float: right;
+	border: none;
+    height: 46px;
+    padding-left:20px
+}
+
+.headlogo {
+	float: left;
+	margin-top: 0px;
+}
+
+.headlinks {
+	display: block;
+	margin-top: 45px;
+	margin-left: 40px;
+	bottom: 0;
+	float: right;
+	font: 0.9em helvetica, sans-serif;
+}
+
+.title_copy {
+	display: block;
+	position: absolute;
+	bottom: 25px;
+	font: 0.7em helvetica, sans-serif;
+	color: #333;
+	top: 30px;
+	margin: 0px 20px 0px 30px;
+}
+
+.title_head {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 85px;
+	font: 1.25em helvetica, sans-serif;
+	/*word-spacing: 20px;*/
+	padding: 12px 30px 10px 25px; /* top right bottom left */
+	background-color: white;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+	margin-bottom: 0px;
+}
+
+.title_head a {
+	color: black;
+	text-decoration: none;
+}
+
+.title_head a:hover {
+	color: #4286f4;
+	text-decoration: underline;
+}
+
+
+/** Page footer area **/
+.bottomband {
+	z-index:999;
+	position: fixed;
+    left: 0;
+    top: auto;
+    bottom: 0;
+	background: #0b2637;
+	background-repeat: no-repeat;
+	font: 10pt arial, sans-serif;
+	text-align: right;
+	color: #fff;
+	width: 100%;
+	height: 50px;
+	/*padding: 10px;*/ /* top right bottom left */
+	box-sizing: border-box;
+}
+.bottomband a {
+	color: #fff;
+	text-decoration: none;
+}
+.bottomband a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+.footer-middle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center; /* Optional: Center text within the div */
+    line-height: 50px; /* Adjust based on the height of your logo */
+  }
+
+.footer-left {
+	float:left; 
+	line-height: 50px; /* Adjust based on the height of your logo */
+    padding-left:10px;
+}
+
+.footer-logo {
+	vertical-align: middle;
+	height: 36px;
+	padding-top:2px
+}
+
+.footer-text {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.footer-link {
+	display: inline-flex;
+	align-items: center; /* Vertically aligns items within the anchor */
+	text-decoration: none; /* Remove underline from links */
+	color: inherit; /* Inherit color from parent */
+}
+
+.footer-right {
+	float: right;
+    line-height: 50px; /* Adjust based on the height of your logo */
+    padding-right:10px;
+}
+
+.footer-logo-right {
+	vertical-align: middle;
+	padding-top:2px
+}
+
+.footer-text-right {
+	vertical-align: middle;
+    float: right;
+}
+
+.footer-link-right {
+	display: inline-flex;
+	align-items: center; /* Vertically aligns items within the anchor */
+	text-decoration: none; /* Remove underline from links */
+	color: inherit; /* Inherit color from parent */
+}

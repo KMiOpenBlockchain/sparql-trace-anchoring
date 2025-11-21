@@ -1,135 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>Anchor a Query using Comunica and Linkchain</title>
-
+	<link type='text/css' href="./main.css" rel='stylesheet'>
 	<link href="./app.css" rel='stylesheet' type='text/css'>
 
 	<script type="text/javascript" src="./lib/linkchains-bundle.js"></script>
 	<script type="application/javascript" src="https://rdf.js.org/comunica-browser/versions/v2.2.1/engines/query-sparql/comunica-browser.js"></script>
-	<script type="application/javascript" src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+	<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.2.0/ethers.umd.min.js"></script>
 	<script type="text/javascript" src="./contract.js"></script>
 	<script type="text/javascript" src="./app.js"></script>
+
+	<script src="https://www.w3schools.com/lib/w3.js"></script>
 </head>
 
 <body onload="initApp();">
+	<div style="margin:0px; padding:0px;" w3-include-html="header.html"></div>
+	<main>
+		<div class="holder">
+			<h1>Anchor a Query using Comunica and Linkchain</h1>
 
-	<div class="title_head">
-		<span class="headlogo"><a href="https://kmi.open.ac.uk/" title="Knowledge Media Institute at Open University"><img alt="Knowledge Media Institute at Open University" src="./images/kmi-logo.png" /></a></span>
-		<span class="headlogoright"><a href="https://open.ac.uk/" title="Open University"><img alt="Open University" src="./images/ou-logo.png" /></a></span>
-	</div>
+			<div class="innerholder" style="padding-top:10px;">
 
-	<div class="holder">
-		<h2>Anchor a Query using Comunica and Linkchain</h2>
+				<div class="panel" style="clear:both; float: left;margin-top:20px;">
+					<span>
+						<h2>Connect to <a href="https://metamask.io/">MetaMask</a> (Select a testnet)</h2>
 
-		<div class="innerholder" style="padding-top:10px;">
+						<span class="infobig">Note: Requires a configured Metamask wallet - see </span><a title="Demostrator GitHub Notes" href="https://github.com/KMiOpenBlockchain/isws2022-demonstrator/blob/main/README.md#metamask-and-the-rinkby-ethereum-testnet">documentation</a>
+						<br /><br />
+						<button class="buttonmetamask" name="enableEthereumButton" id="enableEthereumButton" disabled="false" onclick="loginToMetaMask()">Connect to MetaMask</button>
+						<span for="ethereumaccount">Ethereum Account: </span>
+						<span id="ethereumaccount"></span>
+						<br />
+					</span>
+				</div>
 
-			<div class="panel" style="clear:both; float: left;margin-top:20px;">
-				<span>
-					<h3>Connect to <a href="https://metamask.io/">MetaMask</a> (Select a testnet)</h3>
+				<div class="panel" style="clear:both; float: left;margin-top:20px;">
+					<span>
+						<h2>Anchor a Query</h2>
 
-					<span class="infobig">Note: Requires a configured Metamask wallet - see </span><a href="https://github.com/KMiOpenBlockchain/isws2022-demonstrator/blob/main/README.md#metamask-and-the-rinkby-ethereum-testnet">here</a>
-					<br /><br />
-					<button class="buttonmetamask" name="enableEthereumButton" id="enableEthereumButton" disabled="false" onclick="loginToMetaMask()">Connect to MetaMask</button>
-					<label for="ethereumaccount">Ethereum Account: </label>
-					<label id="ethereumaccount"></label>
-					</br />
-				</span>
+						<label for="sources">Sources <span class="info">(comma separated list of strings, Comunica format)</span>:</label><br />
+						<input type="text" id="sources" name="sources" size="100" title="URLs to use for the sources to run the query on">
+						<br /><br />
+
+						<label for="query">SPARQL Query:</label>
+						<textarea name="query" id="query" class="textareastyle" title="The query to run on the source"></textarea>
+
+						<button class="button" name="runButton" id="runButton" onclick="runQuery()">Run Query</button>
+
+						<br /><hr /><br />
+
+						<label for="queryResults">Query Result <span class="info">(SPARQL JSON)</span>:</label>
+						<br />
+						<textarea name="queryResults" id="queryResults" class="textareastyle"></textarea>
+						<br /><br />
+
+						<label for="physcialResults">Physical Query Plan <span class="info">(from Comunica)</span>:</label>
+						<br />
+						<textarea name="physcialResults" id="physcialResults" class="textareastyle"></textarea>
+						<br /><br />
+
+						<button class="buttonmetamask" name="anchorButton" id="anchorButton" onclick="anchorPlan()">Anchor</button>
+
+						<br /><hr /><br />
+
+						<label for="anchoredData">SPARQL Trace Data:</label>
+						<br />
+						<span class="info">(JSON-LD object containing query, sources, results and query plans)</span>
+						<br />
+						<textarea name="anchoredData" id="anchoredData" class="textareastyle"></textarea>
+						<br /><br />
+
+						<div hidden>
+						<label for="metadataResults">MerQL Metadata:</label>
+						<br />
+						<textarea name="metadataResults" id="metadataResults" class="textareastyle"></textarea>
+						<br /><br />
+						</div>
+
+						<div>
+						<label for="anchoredResults">Anchored MerQL Metadata:</label>
+						<br />
+						<span class="info">(Metadata for whole-document blockchain verification)</span>
+						<br />
+						<textarea name="anchoredResults" id="anchoredResults" class="textareastyle"></textarea>
+						<br /><br />
+						</div>
+
+						<label for="granularAnchoredResults">Granular Anchored MerQL Metadata:</label>
+						<br />
+						<span class="info">(Metadata for per-quad/triple blockchain verification)</span>
+						<br />
+						<textarea name="granularAnchoredResults" id="granularAnchoredResults" class="textareastyle"></textarea>
+						<br /><br />
+
+						<button id="storeDataButton" class="button" onclick="storeData()">Store Data</button>  <span class="info">(in local storage)</span>
+
+					</span>
+				</div>
+				<div class="panel" style="clear:both; float: left;margin-top:20px;">
+					<span>
+						<h2>Stored Data &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button" id="clearDataButton" name="clearDataButton" onclick="clearDataStore()">Clear Stored Data</button></h2>
+						<br />
+						<table style="width: 100%">
+							<thead style="background-color: lightgray">
+								<tr>
+									<th width="10">Date</th>
+									<th width="15">Sources</th>
+									<th width="15">Query</th>
+									<th width="15">Query Result</th>
+									<th width="15">SPARQL Trace Data</th>
+									<th width="15">Anchored Metadata</th>
+									<th width="15">Granular Anchored Metadata</th>
+								</tr>
+							</thead>
+							<tbody id="storedDataTable" style="background-color: white;"></tbody>
+						</table>
+					</span>
+				</div>
+
+				<br /><br />
 			</div>
-
-			<div class="panel" style="clear:both; float: left;margin-top:20px;">
-				<span>
-					<h3>Anchor a Query</h3>
-
-					<label for="sources">Sources <span class="info">(comma separated list of strings, Comunica format)</span>:</label><br />
-					<input type="text" id="sources" name="sources" size="100" title="URLs to use for the sources to run the query on">
-					<br /><br />
-
-					<label for="query">SPARQL Query:</label>
-					<textarea name="query" id="query" class="textareastyle" title="The query to run on the source"></textarea>
-
-					<button class="button" name="runButton" id="runButton" onclick="runQuery()">Run Query</button>
-
-					<br /><hr /><br />
-
- 					<label for="result">Query Result <span class="info">(SPARQL JSON)</span>:</label>
-					<br />
-					<textarea name="queryResults" id="queryResults" class="textareastyle"></textarea>
-					<br /><br />
-
- 					<label for="physcialResults">Physical Query Plan <span class="info">(from Comunica)</span>:</label>
-					<br />
-					<textarea name="physcialResults" id="physcialResults" class="textareastyle"></textarea>
-					<br /><br />
-
-					<button class="buttonmetamask" name="anchorButton" id="anchorButton" onclick="anchorPlan()">Anchor</button>
-
-					<br /><hr /><br />
-
- 					<label for="anchoredData">SPARQL Trace Data:</label>
-					<br />
-					<span class="info">(JSON-LD object containing query, sources, results and query plans)</span>
-					<br />
-					<textarea name="anchoredData" id="anchoredData" class="textareastyle"></textarea>
-					<br /><br />
-
-					<div hidden>
- 					<label for="metadataResults">MerQL Metadata:</label>
-					<br />
-					<textarea name="metadataResults" id="metadataResults" class="textareastyle"></textarea>
-					<br /><br />
-					</div>
-
-					<div>
- 					<label for="anchoredResults">Anchored MerQL Metadata:</label>
-					<br />
-					<span class="info">(Metadata for whole-document blockchain verification)</span>
-					<br />
-					<textarea name="anchoredResults" id="anchoredResults" class="textareastyle"></textarea>
-					<br /><br />
-					</div>
-
- 					<label for="granularAnchoredResults">Granular Anchored MerQL Metadata:</label>
-					<br />
-					<span class="info">(Metadata for per-quad/triple blockchain verification)</span>
-					<br />
-					<textarea name="granularAnchoredResults" id="granularAnchoredResults" class="textareastyle"></textarea>
-					<br /><br />
-
-					<button id="storeDataButton" class="button" onclick="storeData()">Store Data</button>  <span class="info">(in local storage)</span>
-
-				</span>
-			</div>
-			<div class="panel" style="clear:both; float: left;margin-top:20px;">
-				<span>
-					<h3>Stored Data &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button" id="clearDataButton" name="clearDataButton" onclick="clearDataStore()">Clear Stored Data</button></h3>
-					<br />
-					<table style="width: 100%">
-						<thead style="background-color: lightgray">
-							<tr>
-								<th width="10">Date</th>
-								<th width="15">Sources</th>
-								<th width="15">Query</th>
-								<th width="15">Query Result</th>
-								<th width="15">SPARQL Trace Data</th>
-								<th width="15">Anchored Metadata</th>
-								<th width="15">Granular Anchored Metadata</th>
-							</tr>
-						</thead>
-						<tbody id="storedDataTable" style="background-color: white;"></tbody>
-					</table>
-				</span>
-			</div>
-
-			<br /><br />
 		</div>
-	</div>
+	</main>	
 
 	<div class="popup" id="popupDiv">
 		<textarea class="popuptext" id="popupText"></textarea>
@@ -137,9 +136,11 @@
 		<button class="button popupbutton" onclick="copyToClipboard()">Copy</button>
 	</div>
 
-	<div class="clearit"></div>
-	<br>
-	<div class="bottomband"><a href="http://kmi.open.ac.uk">Copyright The Knowledge Media Institute</a></div>
+	<div w3-include-html="footer.html"></div>
+	<script>w3.includeHTML();</script>
+
+	<!-- Cookie Banner -->
+	<script src="cookiebanner.js"></script>
 </body>
 
 </html>
